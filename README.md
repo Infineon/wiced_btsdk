@@ -1,0 +1,1 @@
+# wiced_btsdk
