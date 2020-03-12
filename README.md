@@ -99,7 +99,9 @@ Tools installed by ModusToolbox installer:
 - CYW20820A1 chip: CYW920820EVB-02, CYW989820EVB-01
 - CYW20721B2 chip: CYW920721B2EVK-01, CYW920721B2EVK-02, CYW920721B2EVK-03
 - CYW20719B2 chip: CYW920719B2Q40EVB-01
-- CYW20706A2 chip: CYW920706WCDEVAL, CYBT-353027-EVAL
+- CYW20706A2 chip: CYW920706WCDEVAL, CYBT-353027-EVAL, CYBT-343026-EVAL
+- CYW20735B1 chip: CYW920735Q60EVB-01
+- CYW43012C0 chip: CYW9M2BASE-43012BT
 
 ## Application settings
 
@@ -123,6 +125,7 @@ Application settings below can configured via makefile of the application or pas
       - CYW920721B2EVK-02: SWD hardware debugging supported. SWD signals are shared with D4 and D5, see SW9 in schematics.
       - CYW920721B2EVK-03: SWD hardware debugging is not supported.
       - CYW920706WCDEVAL: SWD debugging requires fly-wire connections. The default setup uses P15 (J22 pin 3) for SWDIO and P30 (J19 pin 2) for SWDCK. P30 is shared with BTN1.
+      - CYW920735Q60EVB-01: SWD hardware debugging supported. The default setup uses the J13 debug header, P3 (J13 pin 2) for SWDIO and P2 (J13 pin 4) for SWDCK.  They can be optionally routed to D4 and D4 on the Arduino header J4, see SW9 in schematics.
 
 ## Downloading an application to a board
 
@@ -131,6 +134,8 @@ If you have issues downloading to the board, follow the steps below:
 - Press and hold the 'Reset' button on the board.
 - Release the 'Reset' button.
 - After one second, release the 'Recover' button.
+
+Note, this is only applicable to boards that download application images to FLASH storage. Boards that only support RAM download (DIRECT_LOAD) such as CYW9M2BASE-43012BT can be power cycled to boot from ROM.
 
 ## Using BSP (platforms)
 
@@ -142,9 +147,9 @@ The application makefile has a default BSP. See "TARGET". The makefile also has 
 
 #### b. Custom BSP
 
-**Multiple Apps**
+**Complete BSP**
 
-To create and use a custom BSP that you want to use in mutiple applications, perform the following steps:
+To create and use a complete custom BSP that you want to use in applications, perform the following steps:
 1. Select an existing BSP you wish to use as a template from the list of supported BSPs in the \wiced\_btsdk\dev-kit\bsp\ folder.
 2. Make a copy in the same folder and rename it. For example \wiced\_btsdk\dev-kit\bsp\TARGET\_mybsp.<br/>
    **Note:** This can be done in the system File Explorer and then refresh the workspace in Eclipse to see the new project.  Delete the .git subfolder from the newly copied folder before refreshing in Eclipse.
@@ -155,16 +160,16 @@ To create and use a custom BSP that you want to use in mutiple applications, per
 5. Update design.modus for your custom BSP if needed using the **Device Configurator** link under **Configurators** in the Quick Panel.
 6. Update the application makefile as needed for other custom BSP specific attributes and build the application.
 
-**Per App**
+**Custom Pin Config Only**
 
-To create a custom configuration for your application from an existing BSP that supports Device Configurator, perform the following steps:
-1. Create a folder COMPONENT\_(BSP)\_design\_modus in your application. For example COMPONENT\_CYW920721B2EVK-03\_design\_modus
-2. Copy the file design.modus from the reference BSP under \wiced\_btsdk\dev-kit\bsp\ and place the file in this folder.
+To create a custom pin configuration for applications using an existing BSP that supports Device Configurator, perform the following steps:
+1. Create a folder COMPONENT\_(CUSTOM)\_design\_modus in the existing BSP folder. For example \wiced\_btsdk\dev-kit\bsp\TARGET\_CYW920819EVB-02\COMPONENT\_my\_design\_modus
+2. Copy the file design.modus from the reference BSP COMPONENT\_bsp\_design\_modus folder under \wiced\_btsdk\dev-kit\bsp\ and place the file in the newly created COMPONENT\_(CUSTOM)\_design\_modus folder.
 3. In the application makefile, add the following two lines<br/>
    DISABLE\_COMPONENTS+=bsp\_design\_modus<br/>
-   COMPONENTS+=(BSP)\_design\_modus<br/>
-   (for example COMPONENTS+=CYW920721B2EVK-03\_design\_modus)
-4. Building of the application will generate pin configuration source code under GeneratedSource folder in your application.
+   COMPONENTS+=(CUSTOM)\_design\_modus<br/>
+   (for example COMPONENTS+=my\_design\_modus)
+4. Building of the application will generate pin configuration source code under a GeneratedSource folder in the new COMPONENT\_(CUSTOM)\_design\_modus folder.
 
 
 ## Using libraries

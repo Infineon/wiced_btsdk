@@ -77,6 +77,7 @@ else
 TOOLCHAIN=GCC_ARM
 TARGET=CYW920819EVB-02
 CY_SHARED_PATH=.
+CY_SHARED_PATH_ABS=$(CURDIR)
 CY_BASELIB_PATH=$(CY_SHARED_PATH)/dev-kit/baselib/20819A1
 
 # make device-configurator not show up
