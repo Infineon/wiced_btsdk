@@ -9,7 +9,7 @@ This folder contains the files that are needed to build the embedded BT apps.
 
 * baselib : Files for chips supported by BTSDK. For example CYW20819, CYW20719, CYW20706, etc.
 
-* bsp : Files for BSPs (platforms) supported by BTSDK. For example CYW920819EVB-02, CYW920721B2EVK-01, CYW920706WCDEVAL etc.
+* bsp : Files for BSPs (platforms) supported by BTSDK. For example CYW920819EVB-02, CYW920721B2EVK-02, CYW920706WCDEVAL etc.
 
 * btsdk-include : Common header files needed by all apps and libraries.
 
@@ -97,8 +97,8 @@ Tools installed by ModusToolbox installer:
 
 - CYW20819A1 chip: CYW920819EVB-02, CYBT-213043-MESH, CYBT-213043-EVAL
 - CYW20820A1 chip: CYW920820EVB-02, CYW989820EVB-01
-- CYW20721B2 chip: CYW920721B2EVK-01, CYW920721B2EVK-02, CYW920721B2EVK-03
-- CYW20719B2 chip: CYW920719B2Q40EVB-01
+- CYW20721B2 chip: CYW920721B2EVK-02, CYW920721B2EVK-03
+- CYW20719B2 chip: CYW920719B2Q40EVB-01, CYBT-423054-EVAL
 - CYW20706A2 chip: CYW920706WCDEVAL, CYBT-353027-EVAL, CYBT-343026-EVAL
 - CYW20735B1 chip: CYW920735Q60EVB-01
 - CYW43012C0 chip: CYW9M2BASE-43012BT
@@ -121,7 +121,6 @@ Application settings below can configured via makefile of the application or pas
       - CYBT-213043-MESH/CYBT-213043-EVAL: SWD signals are routed to P12=SWDCK and P13=SWDIO. Use expansion connectors to connect VDD, GND, SWDCK and SWDIO to your SWD Debugger probe.
       - CYW989820EVB-01: SWDCK (P02) is routed to the J13 DEBUG connector, but not SWDIO. Add a wire from J10 pin 3 (PUART CTS) to J13 pin 2 to connect GPIO P10 to SWDIO.
       - CYW920719B2Q40EVB-01: PUART RX/TX signals are shared with SWDCK and SWDIO. Remove RX and TX jumpers on J10 when using SWD. PUART and SWD cannot be used simultaneously on this board unless these pins are changed from the default configuration.
-      - CYW920721B2EVK-01: SWD hardware debugging is not compatible with the CYW9BT_AUDIO board. PUART RX/TX signals are shared with SWDCK and SWDIO. Remove RX and TX jumpers on J10 when using SWD. PUART and SWD cannot be used simultaneously on this board unless these pins are changed from the default configuration.
       - CYW920721B2EVK-02: SWD hardware debugging supported. SWD signals are shared with D4 and D5, see SW9 in schematics.
       - CYW920721B2EVK-03: SWD hardware debugging is not supported.
       - CYW920706WCDEVAL: SWD debugging requires fly-wire connections. The default setup uses P15 (J22 pin 3) for SWDIO and P30 (J19 pin 2) for SWDCK. P30 is shared with BTN1.
@@ -160,16 +159,29 @@ To create and use a complete custom BSP that you want to use in applications, pe
 5. Update design.modus for your custom BSP if needed using the **Device Configurator** link under **Configurators** in the Quick Panel.
 6. Update the application makefile as needed for other custom BSP specific attributes and build the application.
 
-**Custom Pin Config Only**
+**Custom Pin Config Only - Multiple Apps**
 
-To create a custom pin configuration for applications using an existing BSP that supports Device Configurator, perform the following steps:
+To create a custom pin configuration to be used by multiple applications using an existing BSP that supports Device Configurator, perform the following steps:
 1. Create a folder COMPONENT\_(CUSTOM)\_design\_modus in the existing BSP folder. For example \wiced\_btsdk\dev-kit\bsp\TARGET\_CYW920819EVB-02\COMPONENT\_my\_design\_modus
 2. Copy the file design.modus from the reference BSP COMPONENT\_bsp\_design\_modus folder under \wiced\_btsdk\dev-kit\bsp\ and place the file in the newly created COMPONENT\_(CUSTOM)\_design\_modus folder.
 3. In the application makefile, add the following two lines<br/>
    DISABLE\_COMPONENTS+=bsp\_design\_modus<br/>
    COMPONENTS+=(CUSTOM)\_design\_modus<br/>
    (for example COMPONENTS+=my\_design\_modus)
-4. Building of the application will generate pin configuration source code under a GeneratedSource folder in the new COMPONENT\_(CUSTOM)\_design\_modus folder.
+4. Update design.modus for your custom pin config if needed using the **Device Configurator** link under **Configurators** in the Quick Panel.
+5. Building of the application will generate pin configuration source code under a GeneratedSource folder in the new COMPONENT\_(CUSTOM)\_design\_modus folder.
+
+**Custom Pin Config Only - Per App**
+
+To create a custom configuration to be used by a single application from an existing BSP that supports Device Configurator, perform the following steps:
+1. Create a folder COMPONENT\_(BSP)\_design\_modus in your application. For example COMPONENT\_CYW920721B2EVK-03\_design\_modus
+2. Copy the file design.modus from the reference BSP under \wiced\_btsdk\dev-kit\bsp\ and place the file in this folder.
+3. In the application makefile, add the following two lines<br/>
+   DISABLE\_COMPONENTS+=bsp\_design\_modus<br/>
+   COMPONENTS+=(BSP)\_design\_modus<br/>
+   (for example COMPONENTS+=CYW920721B2EVK-03\_design\_modus)
+4. Update design.modus for your custom pin config if needed using the **Device Configurator** link under **Configurators** in the Quick Panel.
+5. Building of the application will generate pin configuration source code under GeneratedSource folder in your application.
 
 
 ## Using libraries
