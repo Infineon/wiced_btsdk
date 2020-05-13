@@ -39,7 +39,7 @@ See README.md in the sub folders for more information.
 ## Building code examples
 
 **Using the ModusToolbox IDE**
-1. Install ModusToolbox 2.0
+1. Install ModusToolbox 2.1
 2. In the ModusToolbox IDE, click the **New Application** link in the Quick Panel (or, use **File > New > ModusToolbox IDE Application**).
 3. Pick your board for BTSDK.
 4. First select 'wiced\_btsdk'. This project contains the SDK. It is used by all BTSDK applications. You will need to create this project just once in the working directory (i.e. Eclipse workspace).<br/>
@@ -50,12 +50,12 @@ See README.md in the sub folders for more information.
 
 
 **Using command line**
-1. Install ModusToolbox 2.0.
-2. On Windows, use Cygwin from \ModusToolbox\tools_2.0\modus-shell\Cygwin.bat to build apps.
+1. Install ModusToolbox 2.1
+2. On Windows, use Cygwin from \ModusToolbox\tools_2.1\modus-shell\Cygwin.bat to build apps.
 3. git clone 'wiced\_btsdk' repo first. As mentioned earlier, this project contains the SDK used by all apps. You will need to create this project just once in the working directory. For example:<br/>
-   > git clone http://(url link)/wiced_btsdk
+   > git clone https://github.com/cypresssemiconductorco/wiced_btsdk
 4. git clone the BTSDK app repo [ mtb-examples-(board)-btsdk-(type) ]. The application repo directory should be at the same folder level as 'wiced_btsdk'. For example:<br/>
-   > git clone http://(url link)/mtb-examples-CYW920819EVB-02-btsdk-hid
+   > git clone https://github.com/cypresssemiconductorco/mtb-examples-CYW920819EVB-02-btsdk-hid
 5. The 'wiced\_btsdk' repo contains references to other repos. To download all the required collateral, cd to root folder and use 'make getlibs'. For example:<br/>
    > cd wiced_btsdk<br/>
    > make getlibs<br/>
@@ -95,10 +95,10 @@ Tools installed by ModusToolbox installer:
 
 ## List of boards available for use with BTSDK
 
-- CYW20819A1 chip: CYW920819EVB-02, CYBT-213043-MESH, CYBT-213043-EVAL
+- CYW20819A1 chip: CYW920819EVB-02, CYBT-213043-MESH, CYBT-213043-EVAL, CYW920819REF-KB-01
 - CYW20820A1 chip: CYW920820EVB-02, CYW989820EVB-01
 - CYW20721B2 chip: CYW920721B2EVK-02, CYW920721B2EVK-03
-- CYW20719B2 chip: CYW920719B2Q40EVB-01, CYBT-423054-EVAL
+- CYW20719B2 chip: CYW920719B2Q40EVB-01, CYBT-423054-EVAL, CYBT-413055-EVAL, CYBT-483056-EVAL
 - CYW20706A2 chip: CYW920706WCDEVAL, CYBT-353027-EVAL, CYBT-343026-EVAL
 - CYW20735B1 chip: CYW920735Q60EVB-01
 - CYW43012C0 chip: CYW9M2BASE-43012BT
