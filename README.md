@@ -92,6 +92,11 @@ Tools installed by ModusToolbox installer:
 - Peer apps based on Android, iOS, Windows, etc. for testing and reference.
 - Utilities for protocol tracing, manufacturing testing, etc.
 - Documentation for APIs, datasheet, profiles and features.
+- BR/EDR profiles: A2DP, AVRCP, HFP, HSP, HID, SPP, MAP, PBAP, OPP
+- BLE profiles: Mesh profiles, HOGP, ANP, BAP, HRP, FMP, IAS, ESP, LE COC
+- Apple support: Apple Media Service (AMS), Apple Notification Center Service (ANCS), iBeacon, Homekit, iAP2
+- Google support: Google Fast Pair Service (GFPS), Eddystone
+- Amazon support: Alexa Mobile Accessories (AMA)
 
 ## List of boards available for use with BTSDK
 
@@ -101,7 +106,7 @@ Tools installed by ModusToolbox installer:
 - CYW20719B2 chip: CYW920719B2Q40EVB-01, CYBT-423054-EVAL, CYBT-413055-EVAL, CYBT-483056-EVAL
 - CYW20706A2 chip: CYW920706WCDEVAL, CYBT-353027-EVAL, CYBT-343026-EVAL
 - CYW20735B1 chip: CYW920735Q60EVB-01
-- CYW43012C0 chip: CYW9M2BASE-43012BT
+- CYW43012C0 chip: CYW9M2BASE-43012BT, CYW9M2BASE-43012BT20
 
 ## Application settings
 
@@ -193,8 +198,10 @@ All supported libraries (middleware) can be found in the \wiced_btsdk\dev-kit\li
 2. Update the makefile variable "SEARCH\_LIBS\_AND\_INCLUDES" to point to the location of the library.  For example:<br/>
 SEARCH\_LIBS\_AND\_INCLUDES+=$(CY\_SHARED\_PATH)/dev-kit/libraries/btsdk-ota
 
-## API Documentation
+## Documentation
 
-BTSDK documentation is available [online](https://cypresssemiconductorco.github.io/btsdk-docs/BT-SDK/index.html)
+BTSDK API documentation is available [online](https://cypresssemiconductorco.github.io/btsdk-docs/BT-SDK/index.html)
 
 Note: For offline viewing, git clone the [documentation repo](https://github.com/cypresssemiconductorco/btsdk-docs)
+
+BTSDK Technical Brief and Release Notes are available [online](https://community.cypress.com/community/software-forums/modustoolbox-bt-sdk)
