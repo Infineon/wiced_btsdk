@@ -41,7 +41,7 @@
 #include "wiced_platform.h"
 #if CYW20819A1 || CYW20820A1 || CYW20719B2 || CYW20721B2 || CYW20719B1 || CYW20719B0
 #include "wiced_hal_eflash.h"
-#elif CYW20706A2 || CYW20735B1  || CYW43012C0
+#elif CYW20706A2 || CYW20735B1  || CYW43012C0 || CYW20835B1
 #include "wiced_hal_sflash.h"
 #endif
 #include "wiced_bt_factory_app_config.h"
@@ -75,8 +75,10 @@ typedef enum
  ******************************************************/
 uint16_t wiced_bt_factory_config_read(uint8_t item_type, uint8_t* buffer, uint16_t buffer_size)
 {
+    uint16_t i;
     uint16_t copy_len = 0;
-    uint16_t len, i, offset = 0;
+    uint16_t len = 0;
+    uint16_t offset = 0;
     static_data_parse_state state = SS_SEEK_FE;
     uint8_t flash_read_buffer[SS_READ_CHUNK];
 
@@ -87,7 +89,7 @@ uint16_t wiced_bt_factory_config_read(uint8_t item_type, uint8_t* buffer, uint16
         {
 #if CYW20819A1 || CYW20820A1 || CYW20719B2 || CYW20721B2 || CYW20719B1 || CYW20719B0
             if(WICED_SUCCESS != wiced_hal_eflash_read(offset, (uint8_t *)flash_read_buffer, sizeof(flash_read_buffer)))
-#elif CYW20706A2 || CYW20735B1  || CYW43012C0
+#elif CYW20706A2 || CYW20735B1  || CYW43012C0 || CYW20835B1
             if(sizeof(flash_read_buffer) != wiced_hal_sflash_read(offset, sizeof(flash_read_buffer), (uint8_t *)flash_read_buffer))
 #else
 #(error unexpected device type)

@@ -102,10 +102,11 @@ Tools installed by ModusToolbox installer:
 
 - CYW20819A1 chip: CYW920819EVB-02, CYBT-213043-MESH, CYBT-213043-EVAL, CYW920819REF-KB-01
 - CYW20820A1 chip: CYW920820EVB-02, CYW989820EVB-01
-- CYW20721B2 chip: CYW920721B2EVK-02, CYW920721B2EVK-03
+- CYW20721B2 chip: CYW920721B2EVK-02, CYW920721B2EVK-03, CYW920721M2EVK-02, CYBT-423060-EVAL, CYBT-483062-EVAL, CYBT-413061-EVAL
 - CYW20719B2 chip: CYW920719B2Q40EVB-01, CYBT-423054-EVAL, CYBT-413055-EVAL, CYBT-483056-EVAL
 - CYW20706A2 chip: CYW920706WCDEVAL, CYBT-353027-EVAL, CYBT-343026-EVAL
 - CYW20735B1 chip: CYW920735Q60EVB-01
+- CYW20835B1 chip: CYW920835REF-RCU-01
 - CYW43012C0 chip: CYW9M2BASE-43012BT, CYW9M2BASE-43012BT20
 
 ## Application settings
@@ -130,6 +131,8 @@ Application settings below can configured via makefile of the application or pas
       - CYW920721B2EVK-03: SWD hardware debugging is not supported.
       - CYW920706WCDEVAL: SWD debugging requires fly-wire connections. The default setup uses P15 (J22 pin 3) for SWDIO and P30 (J19 pin 2) for SWDCK. P30 is shared with BTN1.
       - CYW920735Q60EVB-01: SWD hardware debugging supported. The default setup uses the J13 debug header, P3 (J13 pin 2) for SWDIO and P2 (J13 pin 4) for SWDCK.  They can be optionally routed to D4 and D4 on the Arduino header J4, see SW9 in schematics.
+      - CYW920835REF-RCU-01: SWD hardware debugging is not supported.
+      - CYW9M2BASE-43012BT: SWD hardware debugging is not supported.
 
 ## Downloading an application to a board
 
