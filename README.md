@@ -1,33 +1,33 @@
 # wiced_btsdk
 
+This repo is provided for backward compatibility when using BTSDK 2.7.1 or prior. It is provided as a means to update BT chip firmware and APIs. It is not used for applications based on BTSDK 2.8 and above. It contains all available BSPs, chip support libraries, and middleware libraries. It is recommended that all applications update to BTSDK 2.8 and the ModusToolbox 2.2 "MTB" flow model using shared resources dynamically retrieved as needed.
+
 ## Folder structure
-All BTSDK code examples need 'wiced\_btsdk' repo to build and test the apps. 'wiced\_btsdk' includes the 'dev-kit' and 'tools' folders:
+If using BTSDK code examples released prior to BTSDK 2.8, they require the  'wiced\_btsdk' repo to build and test the apps. 'wiced\_btsdk' includes the 'dev-kit' and 'tools' folders:
 
 **dev-kit**
 
 This folder contains the files that are needed to build the embedded BT apps.
 
-* baselib : Files for chips supported by BTSDK. For example CYW20819, CYW20719, CYW20706, etc.
+* baselib: Files for chips supported by BTSDK. For example CYW20819, CYW20719, CYW20706, etc.
 
-* bsp : Files for BSPs (platforms) supported by BTSDK. For example CYW920819EVB-02, CYW920721B2EVK-02, CYW920706WCDEVAL etc.
+* bsp: Files for BSPs (platforms) supported by BTSDK. For example CYW920819EVB-02, CYW920721B2EVK-02, CYW920706WCDEVAL etc.
 
-* btsdk-include : Common header files needed by all apps and libraries.
+* btsdk-include: Common header files needed by all apps and libraries.
 
-* btsdk-tools : Build tools needed by BTSDK.
+* btsdk-tools: Build tools needed by BTSDK.
 
-* libraries : Profile libraries used by BTSDK apps such as audio, BLE, HID, etc.
+* libraries: Profile libraries used by BTSDK apps such as audio, BLE, HID, etc.
 
 **tools**
 
 This folder contains tools and utilities need to test the embedded BT apps.
 
-* btsdk-host-apps-bt-ble : Host apps (Client Control) for BLE and BR/EDR embedded apps, demonstrates use of WICED HCI protocol to control embedded apps.
+* btsdk-host-apps-bt-ble: Host apps (Client Control) for BLE and BR/EDR embedded apps, demonstrates use of WICED HCI protocol to control embedded apps.
 
-* btsdk-host-apps-mesh : Host apps (Client Control) for Mesh embedded apps, demonstrates use of WICED HCI protocol to control embedded apps.
+* btsdk-host-peer-apps-mesh: Host apps (Client Control) and Peer apps for embedded Mesh apps, demonstrates the use of WICED HCI protocol to control embedded apps, and configuration and provisioning from peer devices.
 
 * btsdk-peer-apps-ble: Peer apps for embedded BLE apps.
-
-* btsdk-peer-apps-mesh: Peer apps for embedded Mesh apps.
 
 * btsdk-peer-apps-ota: Peer apps for embedded apps that support Over The Air Firmware Upgrade.
 
@@ -36,22 +36,11 @@ This folder contains tools and utilities need to test the embedded BT apps.
 See README.md in the sub folders for more information.
 
 
-## Building code examples
-
-**Using the ModusToolbox IDE**
-1. Install ModusToolbox 2.1
-2. In the ModusToolbox IDE, click the **New Application** link in the Quick Panel (or, use **File > New > ModusToolbox IDE Application**).
-3. Pick your board for BTSDK.
-4. First select 'wiced\_btsdk'. This project contains the SDK. It is used by all BTSDK applications. You will need to create this project just once in the working directory (i.e. Eclipse workspace).<br/>
-   Note: Do not change the name of this project. All BTSDK apps use this project name in application makefiles.
-5. After the 'wiced\_btsdk' project is created, click the **New Application** link again, and select the board and application you want to use.
-6. Select the application in the IDE. In the Quick Panel, select **Build** to build the application.
-7. To program the board (download the application), select **Program** in the Quick Panel.
-
 
 **Using command line**
-1. Install ModusToolbox 2.1
-2. On Windows, use Cygwin from \ModusToolbox\tools_2.1\modus-shell\Cygwin.bat to build apps.
+1. Install ModusToolbox 2.1 or 2.2.
+
+2. On Windows, use Cygwin from \ModusToolbox\tools\_2.x\modus-shell\Cygwin.bat to build apps.
 3. git clone 'wiced\_btsdk' repo first. As mentioned earlier, this project contains the SDK used by all apps. You will need to create this project just once in the working directory. For example:<br/>
    > git clone https://github.com/cypresssemiconductorco/wiced_btsdk
 4. git clone the BTSDK app repo [ mtb-examples-(board)-btsdk-(type) ]. The application repo directory should be at the same folder level as 'wiced_btsdk'. For example:<br/>
@@ -73,6 +62,7 @@ See README.md in the sub folders for more information.
 ## ModusToolbox Tools
 
 Tools installed by ModusToolbox installer:
+
 - Device Configurator:
       Tool to create custom pin mapping for your device.
 - Bluetooth Configurator:
@@ -111,7 +101,7 @@ Tools installed by ModusToolbox installer:
 
 ## Application settings
 
-Application settings below can configured via makefile of the application or passed in via command line. Options below are available for all applications. Other application specific options might also be available and are documented in the read_me.txt for those applications.
+Application settings below can be configured via makefile of the application or passed in via command line. Options below are available for all applications. Other application specific options might also be available and are documented in the read_me.txt for those applications.
 
 - BT\_DEVICE\_ADDRESS<br/>
     - Set the BDA (Bluetooth Device Address) for your device. The BT address is 6 bytes, for example 20819A10FFEE. By default, the SDK will set a BDA for your device by combining the 7 hex digit device ID with the last 5 hex digits of the host PC MAC address.
@@ -157,44 +147,48 @@ The application makefile has a default BSP. See "TARGET". The makefile also has 
 **Complete BSP**
 
 To create and use a complete custom BSP that you want to use in applications, perform the following steps:
+
 1. Select an existing BSP you wish to use as a template from the list of supported BSPs in the \wiced\_btsdk\dev-kit\bsp\ folder.
 2. Make a copy in the same folder and rename it. For example \wiced\_btsdk\dev-kit\bsp\TARGET\_mybsp.<br/>
-   **Note:** This can be done in the system File Explorer and then refresh the workspace in Eclipse to see the new project.  Delete the .git subfolder from the newly copied folder before refreshing in Eclipse.
-   If done in the IDE, an error dialog may appear complaining about items in the .git folder being out of sync.  This can be resolved by deleting the .git subfolder in the newly copied folder.
+   **Note:** This can be done in the system File Explorer and then refresh the workspace in Eclipse to see the new folder.  Delete the .git sub-folder from the newly copied folder before refreshing in Eclipse.
+   If done in the IDE, an error dialog may appear complaining about items in the .git folder being out of sync.  This can be resolved by deleting the .git sub-folder in the newly copied folder.
 
 3. In the new \wiced\_btsdk\dev-kit\bsp\TARGET\_mybsp folder, rename the existing/original (BSP).mk file to mybsp.mk.
 4. In the application makefile, set TARGET=mybsp and add it to SUPPORTED\_TARGETS as well as TARGET\_DEVICE\_MAP.  For example: mybsp/20819A1
 5. Update design.modus for your custom BSP if needed using the **Device Configurator** link under **Configurators** in the Quick Panel.
 6. Update the application makefile as needed for other custom BSP specific attributes and build the application.
 
-**Custom Pin Config Only - Multiple Apps**
+**Custom Pin Configuration Only - Multiple Apps**
 
 To create a custom pin configuration to be used by multiple applications using an existing BSP that supports Device Configurator, perform the following steps:
+
 1. Create a folder COMPONENT\_(CUSTOM)\_design\_modus in the existing BSP folder. For example \wiced\_btsdk\dev-kit\bsp\TARGET\_CYW920819EVB-02\COMPONENT\_my\_design\_modus
 2. Copy the file design.modus from the reference BSP COMPONENT\_bsp\_design\_modus folder under \wiced\_btsdk\dev-kit\bsp\ and place the file in the newly created COMPONENT\_(CUSTOM)\_design\_modus folder.
 3. In the application makefile, add the following two lines<br/>
    DISABLE\_COMPONENTS+=bsp\_design\_modus<br/>
    COMPONENTS+=(CUSTOM)\_design\_modus<br/>
    (for example COMPONENTS+=my\_design\_modus)
-4. Update design.modus for your custom pin config if needed using the **Device Configurator** link under **Configurators** in the Quick Panel.
+4. Update design.modus for your custom pin configuration if needed using the **Device Configurator** link under **Configurators** in the Quick Panel.
 5. Building of the application will generate pin configuration source code under a GeneratedSource folder in the new COMPONENT\_(CUSTOM)\_design\_modus folder.
 
-**Custom Pin Config Only - Per App**
+**Custom Pin Configuration Only - Per App**
 
 To create a custom configuration to be used by a single application from an existing BSP that supports Device Configurator, perform the following steps:
+
 1. Create a folder COMPONENT\_(BSP)\_design\_modus in your application. For example COMPONENT\_CYW920721B2EVK-03\_design\_modus
 2. Copy the file design.modus from the reference BSP under \wiced\_btsdk\dev-kit\bsp\ and place the file in this folder.
 3. In the application makefile, add the following two lines<br/>
    DISABLE\_COMPONENTS+=bsp\_design\_modus<br/>
    COMPONENTS+=(BSP)\_design\_modus<br/>
    (for example COMPONENTS+=CYW920721B2EVK-03\_design\_modus)
-4. Update design.modus for your custom pin config if needed using the **Device Configurator** link under **Configurators** in the Quick Panel.
+4. Update design.modus for your custom pin configuration if needed using the **Device Configurator** link under **Configurators** in the Quick Panel.
 5. Building of the application will generate pin configuration source code under GeneratedSource folder in your application.
 
 
 ## Using libraries
 
-All supported libraries (middleware) can be found in the \wiced_btsdk\dev-kit\libraries folder. To use a library in your application, do the following changes to the makefile in your application:
+All supported libraries (middleware) can be found in the \wiced\_btsdk\dev-kit\libraries folder. To use a library in your application, do the following changes to the makefile in your application:
+
 1. Update the makefile variable "COMPONENTS" to include the library.  For example:<br/>
    COMPONENTS += fw\_upgrade\_lib
 
